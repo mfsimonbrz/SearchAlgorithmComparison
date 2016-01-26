@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="algorithms\basic\BaseAlgorithm.cs" />
-    <Compile Include="algorithms\basic\IPathCostCalculable.cs" />
+    <Compile Include="algorithms\basic\PathCostCalculationDelegate.cs" />
     <Compile Include="algorithms\informedsearch\DijkstraAlgorithm.cs" />
     <Compile Include="algorithms\uninformedsearch\BreadthFirstAlgorithm.cs" />
     <Compile Include="algorithms\uninformedsearch\DepthFirstSearch.cs" />
