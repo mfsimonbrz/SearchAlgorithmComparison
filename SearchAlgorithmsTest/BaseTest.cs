@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SearchAlgorithmComparison.algorithms;
+using SearchAlgorithmComparison.algorithms.uninformedsearch;
+using SearchAlgorithmComparison.algorithms.basic;
 
 namespace SearchAlgorithmsTest
 {

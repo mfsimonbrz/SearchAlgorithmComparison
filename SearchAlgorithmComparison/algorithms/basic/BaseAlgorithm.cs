@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using SearchAlgorithmComparison.algorithms.uninformedsearch;
 
-namespace SearchAlgorithmComparison.algorithms
+namespace SearchAlgorithmComparison.algorithms.basic
 {
     /*
     Esta classe implementa a base dos algoritmos de busca, que consiste em um array com a solução do jogo do 8
@@ -13,23 +14,15 @@ namespace SearchAlgorithmComparison.algorithms
     */
     public abstract class BaseAlgorithm
     {
-        private Stopwatch _Stopwatch;
-        public Node Solution { get; private set; }
+        private readonly Stopwatch _stopwatch;
+        public Node _solution;
 
         protected List<Node> _visitedNodes;
 
-        public long TimeElpased
-        {
-            get
-            {                
-                return _Stopwatch.ElapsedMilliseconds;
-            }
-        }
-
         public BaseAlgorithm()
         {            
-            Solution = new Node(InitializeArray());
-            _Stopwatch = new Stopwatch();
+            _solution = new Node(InitializeArray());
+            _stopwatch = new Stopwatch();
             _visitedNodes = new List<Node>();
         }
 
@@ -38,16 +31,16 @@ namespace SearchAlgorithmComparison.algorithms
         public void Run(Node puzzle)
         {
             Console.WriteLine("Começou\n");
-            _Stopwatch.Reset();
-            _Stopwatch.Start();            
+            _stopwatch.Reset();
+            _stopwatch.Start();            
             Execute(puzzle);
-            _Stopwatch.Stop();            
-            Console.WriteLine("Terminou.\nTempo: {0} ms.", TimeElpased);
+            _stopwatch.Stop();            
+            Console.WriteLine("Terminou.\nTempo: {0} ms.", GetElapsedTime());
         }
 
         private int[,] InitializeArray()
         {
-            int[,] array = new int[3, 3] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 0 } };
+            var array = new int[3, 3] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 0 } };
 
             return array;
         } 
@@ -60,7 +53,7 @@ namespace SearchAlgorithmComparison.algorithms
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    equal = aNode.Value[i, j] == Solution.Value[i, j];
+                    equal = aNode.Value[i, j] == _solution.Value[i, j];
                     if (!equal)
                     {
                         break;
@@ -84,6 +77,11 @@ namespace SearchAlgorithmComparison.algorithms
                 Console.WriteLine("Valor: {0} ==== Nivel: {1}", node.ToString(), node.Level);
             }
             Console.WriteLine("{0} nós visitados", _visitedNodes.Count);
+        }
+
+        private long GetElapsedTime()
+        {
+            return _stopwatch.ElapsedMilliseconds;
         }
 
     }

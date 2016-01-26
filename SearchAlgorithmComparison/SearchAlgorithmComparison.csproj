@@ -43,18 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="algorithms\BaseAlgorithm.cs" />
-    <Compile Include="algorithms\BreadthFirstAlgorithm.cs" />
-    <Compile Include="algorithms\DepthFirstSearch.cs" />
-    <Compile Include="algorithms\EState.cs" />
-    <Compile Include="algorithms\Node.cs" />
-    <Compile Include="algorithms\NodeListExtensions.cs" />
+    <Compile Include="algorithms\basic\BaseAlgorithm.cs" />
+    <Compile Include="algorithms\basic\IPathCostCalculable.cs" />
+    <Compile Include="algorithms\informedsearch\DijkstraAlgorithm.cs" />
+    <Compile Include="algorithms\uninformedsearch\BreadthFirstAlgorithm.cs" />
+    <Compile Include="algorithms\uninformedsearch\DepthFirstSearch.cs" />
+    <Compile Include="algorithms\basic\EState.cs" />
+    <Compile Include="algorithms\basic\Node.cs" />
+    <Compile Include="algorithms\basic\NodeListExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

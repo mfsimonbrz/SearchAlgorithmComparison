@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace SearchAlgorithmComparison.algorithms
+namespace SearchAlgorithmComparison.algorithms.basic
 {
     public class Node
     {
@@ -14,10 +11,17 @@ namespace SearchAlgorithmComparison.algorithms
 
         public int Level { get; set; }
 
+        private PathCostCalculationDelegate _pathCost;
+
         public Node(int[,] puzzle)
         {
             Value = puzzle;
             State = ENodeState.White;
+        }
+
+        public Node(int[,] puzzle, PathCostCalculationDelegate pathCost) : this (puzzle)
+        {
+            this._pathCost = pathCost;               
         }
 
         public List<Node> Expand()
@@ -332,9 +336,17 @@ namespace SearchAlgorithmComparison.algorithms
             }
 
             return equal;
-        }
-                         
+        }                              
             
+        public int GetCost()
+        {
+            if(_pathCost == null)
+            {                
+                throw new System.NotImplementedException("PathCostCalculationDelegate não implentado!");                
+            }
+            
+            return _pathCost();
+        }
     }    
 
 }

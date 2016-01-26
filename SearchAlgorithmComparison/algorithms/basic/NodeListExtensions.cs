@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace SearchAlgorithmComparison.algorithms
+namespace SearchAlgorithmComparison.algorithms.basic
 {
     public static class NodeListExtensions
     {
-        public static bool NodeIsIn(this List<Node> list, Node aNode)
+        public static bool HasNode(this List<Node> list, Node aNode)
         {
             bool result = false;
 

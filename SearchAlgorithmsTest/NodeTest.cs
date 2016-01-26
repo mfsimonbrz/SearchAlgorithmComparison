@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SearchAlgorithmComparison.algorithms;
+using SearchAlgorithmComparison.algorithms.basic;
 using System.Collections.Generic;
 
 namespace SearchAlgorithmsTest

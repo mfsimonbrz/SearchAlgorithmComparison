@@ -1,18 +1,15 @@
-﻿using System;
+﻿using SearchAlgorithmComparison.algorithms.basic;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SearchAlgorithmComparison.algorithms
+namespace SearchAlgorithmComparison.algorithms.uninformedsearch
 
-{
+{    
     /*
-    Implementação do algoritmo de busca em profundidade para a resolução do 
-    problema do jogo do oito.
-    O algoritmo abre recursivamente os nodos adjacentes de cada nodo e os compara com a
-    solução. Trata-se de um algoritmo de busca cega e sua complexidade
-    de tempo é xxxx.
+    This is an implementation of the Depth First Search algorithm
+    to solve the 8-puzzle.
+    The algorithm recursively searches in the adjacent nodes of each node
+    and compares to the solution. It is a blind search algorithm, also
+    called uninformed search algorithm.            
     */
     public class DepthFirstSearch : BaseAlgorithm
     {
@@ -21,15 +18,15 @@ namespace SearchAlgorithmComparison.algorithms
 
         protected override void Execute(Node puzzle)
         {            
-            if (!_visitedNodes.NodeIsIn(puzzle))
+            if (!base._visitedNodes.HasNode(puzzle))
             {
                 puzzle.State = ENodeState.Gray;
-                _visitedNodes.Add(puzzle);
+                base._visitedNodes.Add(puzzle);
             }
 
             if (IsEqualToSolution(puzzle))
             {
-                PrintList();
+                base.PrintList();
                 _solved = true;
                 return;                
             }
@@ -43,7 +40,7 @@ namespace SearchAlgorithmComparison.algorithms
                 List<Node> expandedNodes = puzzle.Expand();
                 foreach(Node node in expandedNodes)
                 {
-                    if (!_visitedNodes.NodeIsIn(node))
+                    if (!base._visitedNodes.HasNode(node))
                     {
                         Execute(node);
                     }

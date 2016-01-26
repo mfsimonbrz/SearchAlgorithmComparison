@@ -1,19 +1,14 @@
-﻿using System;
+﻿using SearchAlgorithmComparison.algorithms.basic;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SearchAlgorithmComparison.algorithms
+namespace SearchAlgorithmComparison.algorithms.uninformedsearch
 {
     /*
-    Implementação do algoritmo de busca em largura para a resolução do 
-    problema do jogo do oito.
-    O algoritmo abre os nodos adjacentes de cada nodo e os compara com a
-    solução. Trata-se de um algoritmo de busca cega e sua complexidade
-    de tempo é O(b^d) , onde b é o fator de adjacências e o d é a 
-    profundidade da solução.
-        
+    This is an implementation of the Breadth First Search algorithm
+    to solve the 8-puzzle.
+    The algorithm searches in the adjacent nodes on the same level and
+    compares to the solution. It is a blind search algorithm, also
+    called uninformed search algorithm.            
     */
     public class BreadthFirstAlgorithm : BaseAlgorithm
     {
@@ -30,15 +25,15 @@ namespace SearchAlgorithmComparison.algorithms
             while(_queue.Count != 0)
             {
                 Node node = _queue.Dequeue();                
-                if (!_visitedNodes.NodeIsIn(node))
+                if (!base._visitedNodes.HasNode(node))
                 {
                     node.State = ENodeState.Gray;
-                    _visitedNodes.Add(node);
+                    base._visitedNodes.Add(node);
                 }
 
                 if (IsEqualToSolution(node))
                 {
-                    PrintList();
+                    base.PrintList();
                     break;
                 }
                 else
@@ -46,11 +41,11 @@ namespace SearchAlgorithmComparison.algorithms
                     List<Node> nodeList = node.Expand();
                     foreach (Node expandedNode in nodeList)
                     {
-                        if (!_visitedNodes.NodeIsIn(expandedNode))
+                        if (!base._visitedNodes.HasNode(expandedNode))
                         {                            
                             _queue.Enqueue(expandedNode);
                             expandedNode.State = ENodeState.Gray;
-                            _visitedNodes.Add(expandedNode);
+                            base._visitedNodes.Add(expandedNode);
                         }
                     }
                 }
