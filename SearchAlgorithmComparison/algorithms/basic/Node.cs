@@ -11,19 +11,14 @@ namespace SearchAlgorithmComparison.algorithms.basic
 
         public int Level { get; set; }
 
-        private PathCostCalculationDelegate _pathCost;
-
+        public PathCostCalculationDelegate PathCost;
+        
         public Node(int[,] puzzle)
         {
             Value = puzzle;
             State = ENodeState.White;
         }
-
-        public Node(int[,] puzzle, PathCostCalculationDelegate pathCost) : this (puzzle)
-        {
-            this._pathCost = pathCost;               
-        }
-
+        
         public List<Node> Expand()
         {
             List<Node> expandedNodes = new List<Node>();
@@ -340,11 +335,11 @@ namespace SearchAlgorithmComparison.algorithms.basic
             
         public int GetCost()
         {
-            if(_pathCost == null)
-            {                
-                throw new System.NotImplementedException("PathCostCalculationDelegate não implentado!");                
+            if (_pathCost == null)
+            {
+                throw new System.NotImplementedException("PathCostCalculationDelegate não implentado!");
             }
-            
+
             return _pathCost();
         }
     }    
