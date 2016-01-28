@@ -15,7 +15,7 @@ namespace SearchAlgorithmComparison.algorithms.basic
     public abstract class BaseAlgorithm
     {
         private readonly Stopwatch _stopwatch;
-        public Node _solution;
+        private Node _solution;
 
         protected List<Node> _visitedNodes;
 

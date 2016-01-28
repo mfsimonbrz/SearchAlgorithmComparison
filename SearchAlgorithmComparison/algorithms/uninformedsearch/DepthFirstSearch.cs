@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SearchAlgorithmComparison.algorithms.uninformedsearch
 
-{    
+{
     /*
     This is an implementation of the Depth First Search algorithm
     to solve the 8-puzzle.
@@ -17,33 +17,31 @@ namespace SearchAlgorithmComparison.algorithms.uninformedsearch
         private bool _solved;
 
         protected override void Execute(Node puzzle)
-        {            
+        {
             if (!base._visitedNodes.HasNode(puzzle))
             {
                 puzzle.State = ENodeState.Gray;
                 base._visitedNodes.Add(puzzle);
             }
 
-            if (IsEqualToSolution(puzzle))
+            if (base.IsEqualToSolution(puzzle))
             {
                 base.PrintList();
                 _solved = true;
-                return;                
+                return;
             }
-            else
-            {
-                if (_solved)
-                {
-                    return;
-                }
 
-                List<Node> expandedNodes = puzzle.Expand();
-                foreach(Node node in expandedNodes)
+            if (_solved)
+            {
+                return;
+            }
+
+            List<Node> expandedNodes = ExpandedNodesFinder.ExpandNode(puzzle);
+            foreach (Node node in expandedNodes)
+            {
+                if (!base._visitedNodes.HasNode(node))
                 {
-                    if (!base._visitedNodes.HasNode(node))
-                    {
-                        Execute(node);
-                    }
+                    Execute(node);
                 }
             }
 

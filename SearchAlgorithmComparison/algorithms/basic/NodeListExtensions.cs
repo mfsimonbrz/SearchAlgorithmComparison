@@ -5,7 +5,7 @@ namespace SearchAlgorithmComparison.algorithms.basic
     public static class NodeListExtensions
     {
         public static bool HasNode(this List<Node> list, Node aNode)
-        {
+        {            
             bool result = false;
 
             foreach(Node node in list)
@@ -17,7 +17,7 @@ namespace SearchAlgorithmComparison.algorithms.basic
                 }
             }
 
-            return result;
+            return result;            
         }
     }
 }
